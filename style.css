@@ -1,0 +1,56 @@
+/*h1{
+	color: rgba(250, 0, 140, .3);
+}*/
+.jumbotron{
+	padding-top: 70px;
+	background-color: mistyrose;
+}
+/*body{
+	min-height: 3000px;
+}*/
+/*h2{
+	text-align: center;
+}*/
+#gallery{
+	background-color: mistyrose;
+}
+footer a{
+	text-decoration: none;
+	color: black;
+	
+}
+footer{
+	padding-bottom: 20px;
+	background-color: mistyrose;
+	
+}
+
+section{
+	padding-top: 70px;
+}
+.navbar{
+	background-color: mistyrose;
+}
+.table{
+	width: 80%;
+	text-align: center;
+	margin: -60px;
+}
+h2{
+	text-decoration: underline;
+	padding: 30px;
+
+}
+#about{
+	background-color: mistyrose;
+}
+.navbar-brand{
+	color: black;
+}
+.accordion-button, .accordion-item{
+	text-align: center;
+	background-color: white;
+}
+h4{
+	text-decoration: underline;
+}
