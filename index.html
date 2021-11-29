@@ -262,20 +262,29 @@
          </div>
           <div class="row justify-content-center">
            <div class="col-md-6">
-           <form>
+           <form name="submit-to-google-sheet">
+            <!-- alert -->
+            <div class="alert alert-success alert-dismissible fade show d-none pesan-terkirim" role="alert">
+                <strong>Terima Kasih!</strong> Pesan anda telah kami terima,
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
              <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="name" aria-describedby="name">
+                  <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
                 </div>
              <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" id="email" name="email">
              </div>
              <div class="mb-3">
                <label for="pesan" class="form-label">Pesan</label>
-               <textarea class="form-control" id="pesan" rows="3"></textarea>
+               <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
              </div>
-               <button type="submit" class="btn btn-primary">Submit</button>
+               <button type="submit" class="btn btn-primary btn-kirim">Submit</button>
+               <button class="btn btn-primary d-none btn-loading" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
            </form>
          </div>
        </div>
@@ -291,10 +300,36 @@
 </footer>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+          <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+          <!-- Option 1: Bootstrap Bundle with Popper -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+          <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzAAUQyMKgWS5BBTzwzRfRcE_SrtbYz95U8UOhqMqYoO9W_HOkjeEYY5ULY8Fz8NGu_/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const btnKirim = document.querySelector('.btn-kirim');
+        const btnLoading = document.querySelector('.btn-loading');
+        const pesanTerlirim = document.querySelector('.pesan-terkirim')
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          /*tombol loading hilang*/
+          btnKirim.classList.toggle('d-none');
+          btnLoading.classList.toggle('d-none')
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response =>{ console.log('Success!', response)
+              /*loading hilang,tombol muncul*/
+               btnKirim.classList.toggle('d-none');
+               btnLoading.classList.toggle('d-none')
+               /*setelah berhasil muncul alert*/
+               pesanTerlirim.classList.toggle('d-none')
+               /*reset form*/
+               form.reset();
+          })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 
    
   </body>
