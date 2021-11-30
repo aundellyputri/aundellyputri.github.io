@@ -67,7 +67,7 @@
   <div class="jumbotron text-center mb-4">
      <img src="img/rora.jpg" width="200px" class="rounded-circle img-thumbnail">
         <h1 class="display-4">Aurora Putri Andeli</h1>
-          <p class="lead">Student | Progremer.</p>
+          <p class="lead"><!-- Student | Progremer. --></p>
             <p>BANGTAN SONYEONDAN{BTS}-{ARMY <i class="bi bi-suit-heart-fill text-danger"></i>}</p>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffe4e1" fill-opacity="1" d="M0,192L48,160C96,128,192,64,288,85.3C384,107,480,213,576,234.7C672,256,768,192,864,176C960,160,1056,192,1152,176C1248,160,1344,96,1392,64L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
@@ -323,6 +323,23 @@
                 /*one: true,*/
               });
             </script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/TextPlugin.min.js"></script>
+            <script>
+             /* gsap.from('.jumbotron img',{y:-100,duration:1, ease: 'bounce'});*/
+
+              gsap.registerPlugin(TextPlugin);
+
+              gsap.to('.lead', {duration:1, text:"Student | Progremer", ease:"none"});
+
+
+              gsap.from('.jumbotron img',{rotateY: 360, duration: 1, opacity: 0});
+
+              gsap.from('.navbar', {y: -100, opacity: 0, ease: 'bounce', duration: 1.5});
+
+              gsap.from('.display-4',{x:-100, opacity: 0, ease:'back', duration:1.5});
+            </script>:
 
 
           <script>
